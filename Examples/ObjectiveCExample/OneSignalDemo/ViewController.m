@@ -151,26 +151,93 @@
 }
 
 - (IBAction)getIdsAvailableButtonPressed:(UIButton *)sender {
-    [OneSignal IdsAvailable:^(NSString* userId, NSString* pushToken) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (pushToken)
-            self.textView.text = [NSString stringWithFormat:@"PlayerId:\n%@\n\nPushToken:\n%@\n", userId, pushToken];
-            else
-            self.textView.text = @"ERROR: Could not get a pushToken from Apple! Make sure your provisioning profile has 'Push Notifications' enabled and rebuild your app.";
-            
-            NSLog(@"\n%@", self.textMultiLine1.text);
-        });
-    }];
+    OSPermissionSubscriptionState *state = [OneSignal getPermissionSubscriptionState];
+    NSString *pushToken = state.subscriptionStatus.pushToken;
+    NSString *userId = state.subscriptionStatus.userId;
+    
+    if (pushToken) {
+        NSDictionary *content = @{
+                                  @"include_player_ids" : @[userId],
+                                  @"contents" : @{@"en" : @"Wendy! It's been 10 days since you last bought Starbucks coffee! Come back! ☕😘"},
+                                  @"headings" : @{@"en" : @"Why you no buy my coffee? 😞"},
+                                  // If want to open a url with in-app browser
+                                  //"url": "https://google.com",
+                                  // If you want to deep link and pass a URL to your webview, use "data" parameter and use the key in the AppDelegate's notificationOpenedBlock
+                                  @"data" : @{@"OpenURL" : @"https://imgur.com"},
+                                  @"ios_badgeType" : @"Increase",
+                                  @"ios_badgeCount" : @1
+                                  };
+        
+        [OneSignal postNotification:content onSuccess:^(NSDictionary *result) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.textView.text = [NSString stringWithFormat:@"Sent notification with payload: \n\n%@", content];
+            });
+        } onFailure:^(NSError *error) {
+            [self displayError:error.localizedDescription];
+        }];
+    } else {
+        [self displayError:@"Could not send push notification: current user does not have a push token"];
+    }
 }
 
 - (IBAction)syncEmailButtonPressed:(UIButton *)sender {
-    [OneSignal syncHashedEmail:@"test@email.com"];
-    NSLog(@"Sync hashed email successful");
+    OSPermissionSubscriptionState *state = [OneSignal getPermissionSubscriptionState];
+    NSString *pushToken = state.subscriptionStatus.pushToken;
+    NSString *userId = state.subscriptionStatus.userId;
+    
+    if (pushToken) {
+        NSDictionary *content = @{
+                                  @"include_player_ids" : @[userId],
+                                  @"contents" : @{@"en" : @"Rate your coffee experience and send a coffee to a friend 👯‍♀️"},
+                                  @"headings" : @{@"en" : @"Thanks for coming in! Please rate us! ✅"},
+                                  // If want to open a url with in-app browser
+                                  //"url": "https://google.com",
+                                  // If you want to deep link and pass a URL to your webview, use "data" parameter and use the key in the AppDelegate's notificationOpenedBlock
+                                  @"data" : @{@"OpenURL" : @"https://imgur.com"},
+                                  @"ios_badgeType" : @"Increase",
+                                  @"ios_badgeCount" : @1
+                                  };
+        
+        [OneSignal postNotification:content onSuccess:^(NSDictionary *result) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.textView.text = [NSString stringWithFormat:@"Sent notification with payload: \n\n%@", content];
+            });
+        } onFailure:^(NSError *error) {
+            [self displayError:error.localizedDescription];
+        }];
+    } else {
+        [self displayError:@"Could not send push notification: current user does not have a push token"];
+    }
 }
 
 - (IBAction)promptLocationButtonPressed:(UIButton *)sender {
-    [OneSignal promptLocation];
-    NSLog(@"Prompted location");
+    OSPermissionSubscriptionState *state = [OneSignal getPermissionSubscriptionState];
+    NSString *pushToken = state.subscriptionStatus.pushToken;
+    NSString *userId = state.subscriptionStatus.userId;
+    
+    if (pushToken) {
+        NSDictionary *content = @{
+                                  @"include_player_ids" : @[userId],
+                                  @"contents" : @{@"en" : @"Hi Wendy - we see you're close to a Starbucks - come in and get coffee on us! 🙌"},
+                                  @"headings" : @{@"en" : @"Free cup of Starbucks 💸"},
+                                  // If want to open a url with in-app browser
+                                  //"url": "https://google.com",
+                                  // If you want to deep link and pass a URL to your webview, use "data" parameter and use the key in the AppDelegate's notificationOpenedBlock
+                                  @"data" : @{@"OpenURL" : @"https://imgur.com"},
+                                  @"ios_badgeType" : @"Increase",
+                                  @"ios_badgeCount" : @1
+                                  };
+        
+        [OneSignal postNotification:content onSuccess:^(NSDictionary *result) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.textView.text = [NSString stringWithFormat:@"Sent notification with payload: \n\n%@", content];
+            });
+        } onFailure:^(NSError *error) {
+            [self displayError:error.localizedDescription];
+        }];
+    } else {
+        [self displayError:@"Could not send push notification: current user does not have a push token"];
+    }
 }
 
 - (IBAction)sendFirstExampleNotificationButtonPressed:(UIButton *)sender {
@@ -181,14 +248,12 @@
     if (pushToken) {
         NSDictionary *content = @{
           @"include_player_ids" : @[userId],
-          @"contents" : @{@"en" : @"This is a notification's message/body"},
-          @"headings" : @{@"en" : @"Notification Title"},
-          @"subtitle" : @{@"en" : @"An English Subtitle"},
+          @"contents" : @{@"en" : @"Thanks for setting up Apple Pay - Get 20% off your next purchase on us! 🤑"},
+          @"headings" : @{@"en" : @"Apple Pay 💰💰"},
           // If want to open a url with in-app browser
           //"url": "https://google.com",
           // If you want to deep link and pass a URL to your webview, use "data" parameter and use the key in the AppDelegate's notificationOpenedBlock
           @"data" : @{@"OpenURL" : @"https://imgur.com"},
-          @"ios_attachments" : @{@"id" : @"https://cdn.pixabay.com/photo/2017/01/16/15/17/hot-air-balloons-1984308_1280.jpg"},
           @"ios_badgeType" : @"Increase",
           @"ios_badgeCount" : @1
         };
@@ -213,8 +278,8 @@
     if (pushToken) {
         NSDictionary *content = @{
           @"include_player_ids" : @[userId],
-          @"headings" : @{@"en" : @"Congrats {{username}}!"},
-          @"contents" : @{@"en" : @"You finished level {{ finished_level | default: '1'}}! Let's see if you can do more."},
+          @"headings" : @{@"en" : @"Welcome Starbucks Mobile ☕"},
+          @"contents" : @{@"en" : @"Wendy, thanks for signing up for Starbucks - please add Apple Pay!"},
           @"buttons" : @[@{@"id" : @"id1", @"text" : @"green"}, @{@"id" : @"id2", @"text" : @"red"}],
           @"data" : @{@"OpenURL" : @"https://www.arstechnica.com"}
         };
