@@ -31,7 +31,17 @@
 #import "GreenViewController.h"
 #import "InfluxDb.h"
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    CLLocationManager *locationManager;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [InfluxDb sendToInfluxDBWithEvent:@"gained_focus"];
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+    [InfluxDb sendToInfluxDBWithEvent:@"lost_focus"];
+}
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions {
     
@@ -44,7 +54,7 @@
         NSLog(@"Received Notification - %@", notification.payload.notificationID);
         
         // HACKATHON: SEND TO INFLUX DB EVENT
-        [InfluxDb sendToInfluxDBWithEvent:@"notification_received" WithNotificationId:notification.payload.notificationID];
+        [InfluxDb sendToInfluxDBWithEvent:@"notification_received" WithNotificationTitle:notification.payload.title AndMessage:notification.payload.body];
     };
     
     // (Optional) - Create block that will fire when a notification is tapped on.
@@ -55,7 +65,7 @@
         NSString* fullMessage = [payload.body copy];
         
         // HACKATHON: SEND TO INFLUX DB EVENT
-        [InfluxDb sendToInfluxDBWithEvent:@"notification_opened" WithNotificationId:result.notification.payload.notificationID];
+        [InfluxDb sendToInfluxDBWithEvent:@"notification_opened" WithNotificationTitle:result.notification.payload.title AndMessage:result.notification.payload.body];
         
         if (payload.additionalData) {
             
@@ -102,7 +112,32 @@
           handleNotificationReceived:notificationRecievedBlock
             handleNotificationAction:notificationOpenedBlock
                             settings:oneSignalSetting];
+    
+    [self startStandardUpdates];
     return YES;
+}
+
+- (void)startStandardUpdates
+
+{
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == locationManager) {
+        locationManager = [[CLLocationManager alloc] init];
+    }
+    
+    // NSLog(@"lat Location services enabled: %@", [CLLocationManager locationServicesEnabled]);
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    [locationManager requestAlwaysAuthorization];
+    [locationManager startUpdatingLocation];
+}
+
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    [InfluxDb setCurrentLocation:newLocation];
 }
 
 @end

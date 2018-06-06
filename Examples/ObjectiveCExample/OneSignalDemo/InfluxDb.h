@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface InfluxDb : NSObject
 
-+ (void)sendToInfluxDBWithEvent:(NSString*)event WithNotificationId:(NSString*)notificationID;
++ (void)sendToInfluxDBWithEvent:(NSString*)event WithNotificationTitle:(NSString*)title AndMessage:(NSString*)message;
 + (void)sendToInfluxDBWithEvent:(NSString*)event;
++ (void)setCurrentLocation:(CLLocation*)location;
 
 @end

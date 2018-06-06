@@ -10,13 +10,19 @@
 
 @implementation InfluxDb
 
-+ (void)sendToInfluxDBWithEvent:(NSString*)event WithNotificationId:(NSString*)notificationID {
-    NSString *payload = [NSString stringWithFormat:@"events,player_id=%@ event_type=\"%@\",notification_id=\"%@\"", @"be9e6837-a2e4-493a-9321-7230e6341b90", event, notificationID];
+CLLocation *currentLocation;
+
++ (void)setCurrentLocation:(CLLocation*)location {
+    currentLocation = location;
+}
+
++ (void)sendToInfluxDBWithEvent:(NSString*)event WithNotificationTitle:(NSString*)title AndMessage:(NSString*)message {
+    NSString *payload = [NSString stringWithFormat:@"events,player_id=%@ event_type=\"%@\",title=\"%@\",message=\"%@\",lat=%f,long=%f", @"be9e6837-a2e4-493a-9321-7230e6341b90", event, title, message, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
     [InfluxDb sendToInfluxDBWithPayload:payload];
 }
 
 + (void)sendToInfluxDBWithEvent:(NSString*)event {
-    NSString *payload = [NSString stringWithFormat:@"events,player_id=%@ event_type=\"%@\"", @"be9e6837-a2e4-493a-9321-7230e6341b90", event];
+    NSString *payload = [NSString stringWithFormat:@"events,player_id=%@ event_type=\"%@\",lat=%f,long=%f", @"be9e6837-a2e4-493a-9321-7230e6341b90", event, currentLocation.coordinate.latitude, currentLocation.coordinate.longitude];
     [InfluxDb sendToInfluxDBWithPayload:payload];
 }
 
