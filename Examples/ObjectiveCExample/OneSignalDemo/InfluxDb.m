@@ -12,6 +12,15 @@
 
 + (void)sendToInfluxDBWithEvent:(NSString*)event WithNotificationId:(NSString*)notificationID {
     NSString *payload = [NSString stringWithFormat:@"events,player_id=%@ event_type=\"%@\",notification_id=\"%@\"", @"be9e6837-a2e4-493a-9321-7230e6341b90", event, notificationID];
+    [InfluxDb sendToInfluxDBWithPayload:payload];
+}
+
++ (void)sendToInfluxDBWithEvent:(NSString*)event {
+    NSString *payload = [NSString stringWithFormat:@"events,player_id=%@ event_type=\"%@\"", @"be9e6837-a2e4-493a-9321-7230e6341b90", event];
+    [InfluxDb sendToInfluxDBWithPayload:payload];
+}
+
++ (void)sendToInfluxDBWithPayload:(NSString *)payload {
     NSData *postData = [payload dataUsingEncoding:NSUTF8StringEncoding];
     NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
     

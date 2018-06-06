@@ -11,5 +11,6 @@
 @interface InfluxDb : NSObject
 
 + (void)sendToInfluxDBWithEvent:(NSString*)event WithNotificationId:(NSString*)notificationID;
++ (void)sendToInfluxDBWithEvent:(NSString*)event;
 
 @end

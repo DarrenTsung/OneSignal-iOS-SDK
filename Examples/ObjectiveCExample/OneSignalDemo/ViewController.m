@@ -27,6 +27,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "InfluxDb.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UISwitch *subscriptionStatusSwitch;
@@ -294,6 +295,7 @@
             self.registerButton.backgroundColor = [UIColor greenColor];
             self.registerButton.userInteractionEnabled = false;
             self.subscriptionStatusSwitch.userInteractionEnabled = true;
+            [InfluxDb sendToInfluxDBWithEvent:@"subscribed_true"];
         } else if (stateChanges.to.status == OSNotificationPermissionDenied) {
             [self displaySettingsNotification];
         }
@@ -309,10 +311,14 @@
         self.subscriptionStatusSwitch.on = false;
         self.subscriptionStatusLabel.text = @"Set Subscription OFF";
         self.registerButton.backgroundColor = [UIColor redColor];
+        
+        [InfluxDb sendToInfluxDBWithEvent:@"subscribed_false"];
     } else if (!stateChanges.from.subscribed && stateChanges.to.subscribed) {
         self.subscriptionStatusSwitch.on = true;
         self.subscriptionStatusLabel.text = @"Set Subscription ON";
         self.registerButton.backgroundColor = [UIColor greenColor];
+        
+        [InfluxDb sendToInfluxDBWithEvent:@"subscribed_true"];
     }
 }
 
