@@ -29,6 +29,7 @@
 #import <OneSignal/OneSignal.h>
 #import "RedViewController.h"
 #import "GreenViewController.h"
+#import "InfluxDb.h"
 
 @implementation AppDelegate
 
@@ -43,7 +44,7 @@
         NSLog(@"Received Notification - %@", notification.payload.notificationID);
         
         // HACKATHON: SEND TO INFLUX DB EVENT
-        [self sendToInfluxDBWithEvent:@"notification_received" WithNotificationId:notification.payload.notificationID];
+        [InfluxDb sendToInfluxDBWithEvent:@"notification_received" WithNotificationId:notification.payload.notificationID];
     };
     
     // (Optional) - Create block that will fire when a notification is tapped on.
@@ -52,6 +53,9 @@
         
         NSString* messageTitle = @"OneSignal Example";
         NSString* fullMessage = [payload.body copy];
+        
+        // HACKATHON: SEND TO INFLUX DB EVENT
+        [InfluxDb sendToInfluxDBWithEvent:@"notification_opened" WithNotificationId:result.notification.payload.notificationID];
         
         if (payload.additionalData) {
             
@@ -99,27 +103,6 @@
             handleNotificationAction:notificationOpenedBlock
                             settings:oneSignalSetting];
     return YES;
-}
-
-- (void)sendToInfluxDBWithEvent:(NSString*)event WithNotificationId:(NSString*)notificationID {
-    NSString *payload = [NSString stringWithFormat:@"events,player_id=%@ event_type=\"%@\",notification_id=\"%@\"", @"be9e6837-a2e4-493a-9321-7230e6341b90", event, notificationID];
-    NSData *postData = [payload dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"POST"];
-    [request setURL:[NSURL URLWithString:@"http://147.75.192.45:8086/write?db=onesignal_dev"]];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:postData];
-    
-    NSLog(@"SENDING OFF INFLUXDB EVENT!");
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionDataTask *sendTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"Received data: %@, response: %@, error: %@", data, response, error);
-    }];
-    [sendTask resume];
 }
 
 @end
