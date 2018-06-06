@@ -91,7 +91,7 @@
     
     // (REQUIRED) - Initializes OneSignal
     [OneSignal initWithLaunchOptions:launchOptions
-                               appId:@"b2f7f966-d8cc-11e4-bed1-df8f05be55ba"
+                               appId:@"3beb3078-e0f1-4629-af17-fde833b9f716"
           handleNotificationReceived:notificationRecievedBlock
             handleNotificationAction:notificationOpenedBlock
                             settings:oneSignalSetting];

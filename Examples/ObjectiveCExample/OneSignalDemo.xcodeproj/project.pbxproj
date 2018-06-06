@@ -186,7 +186,6 @@
 				916B370C1E6F520D00CEE4AA /* Sources */,
 				916B370D1E6F520D00CEE4AA /* Frameworks */,
 				916B370E1E6F520D00CEE4AA /* Resources */,
-				EE781DE378D91960D86CE6A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,8 +205,6 @@
 				DE4BCB60161638D4003F4A66 /* Frameworks */,
 				DE4BCB61161638D4003F4A66 /* Resources */,
 				3EA62ECB1D877A5A00E5845A /* Embed App Extensions */,
-				3A713F87D8DB2B63D1F9B177 /* [CP] Embed Pods Frameworks */,
-				0DDC4A7C9FEDBAD0394075C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,11 +228,11 @@
 				TargetAttributes = {
 					916B370F1E6F520D00CEE4AA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 4ZR3G6ZK9T;
+						DevelopmentTeam = 99SW8E36CT;
 						ProvisioningStyle = Automatic;
 					};
 					DE4BCB62161638D4003F4A66 = {
-						DevelopmentTeam = 4ZR3G6ZK9T;
+						DevelopmentTeam = 99SW8E36CT;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -291,36 +288,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0DDC4A7C9FEDBAD0394075C6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OneSignalDemo/Pods-OneSignalDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3A713F87D8DB2B63D1F9B177 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OneSignalDemo/Pods-OneSignalDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7A59FCE6645C295E1D1E497D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -355,21 +322,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EE781DE378D91960D86CE6A9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NotificationServiceExtension/Pods-NotificationServiceExtension-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -440,14 +392,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4ZR3G6ZK9T;
+				DEVELOPMENT_TEAM = 99SW8E36CT;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.testapp.brad.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.jonexample.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -469,7 +421,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4ZR3G6ZK9T;
+				DEVELOPMENT_TEAM = 99SW8E36CT;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -477,7 +429,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.testapp.brad.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.jonexample.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -566,13 +518,13 @@
 				CODE_SIGN_ENTITLEMENTS = OneSignalDemo/OneSignalDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4ZR3G6ZK9T;
+				DEVELOPMENT_TEAM = 99SW8E36CT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OneSignalDemo/OneSignalDemo-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/OneSignalDemo/OneSignalDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.testapp.brad;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.jonexample;
 				PRODUCT_NAME = OneSignalDemo;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -588,13 +540,13 @@
 				CODE_SIGN_ENTITLEMENTS = OneSignalDemo/OneSignalDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4ZR3G6ZK9T;
+				DEVELOPMENT_TEAM = 99SW8E36CT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OneSignalDemo/OneSignalDemo-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/OneSignalDemo/OneSignalDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.testapp.brad;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.jonexample;
 				PRODUCT_NAME = OneSignalDemo;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

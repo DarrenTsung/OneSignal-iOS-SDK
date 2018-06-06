@@ -23,6 +23,7 @@
 		454EB3271FABEF3A0093AD9B /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4529DEFB1FA9201000CEAB1D /* FirebaseCore.framework */; };
 		454EB3281FABEF3E0093AD9B /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4529DEF91FA91FBF00CEAB1D /* FirebaseAnalytics.framework */; };
 		458396691FACFBB300D5DB95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4529DEFD1FA921D900CEAB1D /* GoogleService-Info.plist */; };
+		6C2926A720C8415200DA743D /* OneSignal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2926A620C8415200DA743D /* OneSignal.framework */; };
 		9112E8871E724C320022A1CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9112E8861E724C320022A1CB /* main.m */; };
 		9112E88A1E724C320022A1CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9112E8891E724C320022A1CB /* AppDelegate.m */; };
 		9112E88D1E724C320022A1CB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9112E88C1E724C320022A1CB /* ViewController.m */; };
@@ -75,6 +76,7 @@
 		4529DF031FA929F700CEAB1D /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseNanoPB.framework; sourceTree = "<group>"; };
 		4529DF051FA92C7F00CEAB1D /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
 		454F94F71FAD49F300D74CCF /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		6C2926A620C8415200DA743D /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = ../OneSignalSDK/Framework/OneSignal.framework; sourceTree = "<group>"; };
 		9112E8821E724C320022A1CB /* OneSignalDevApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneSignalDevApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9112E8861E724C320022A1CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9112E8881E724C320022A1CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C2926A720C8415200DA743D /* OneSignal.framework in Frameworks */,
 				454EB3281FABEF3E0093AD9B /* FirebaseAnalytics.framework in Frameworks */,
 				454EB3271FABEF3A0093AD9B /* FirebaseCore.framework in Frameworks */,
 				454EB3261FABEF380093AD9B /* FirebaseInstanceID.framework in Frameworks */,
@@ -185,6 +188,7 @@
 		9112E8A21E724DCA0022A1CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C2926A620C8415200DA743D /* OneSignal.framework */,
 				4529DF051FA92C7F00CEAB1D /* GoogleToolboxForMac.framework */,
 				4529DF031FA929F700CEAB1D /* FirebaseNanoPB.framework */,
 				4529DF011FA9292800CEAB1D /* nanopb.framework */,
@@ -484,7 +488,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.jonexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -503,7 +507,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.jonexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -520,7 +524,7 @@
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.example.OneSignalNotificationServiceExtensionA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.jonexample.OneSignalNotificationServiceExtensionA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -538,7 +542,7 @@
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.example.OneSignalNotificationServiceExtensionA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onesignal.jonexample.OneSignalNotificationServiceExtensionA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
